@@ -8,23 +8,28 @@ products and sales for a fictitious company.
     XML file. [15 marks]
     
 - (b) Using the function you created in a) above, load the XML file. Then use the print() function to
-    display the ProductName and UnitPrice for the second, fourth, sixth, eighth and tenth products.
+    display the ProductName and UnitPrice for the 2, 4, 6, 8 and 10 products.
     Hint: the range() function might come in useful here! [15 marks]
 """
 
+# import xml lib
 import xml.etree.cElementTree as ET
 
+# parse xml file in the tree format
 tree = ET.parse('NorthWind.xml')
 
+#load the root of the tree i.e <northwind>
 root = tree.getroot()
 
+# As mentioned in b we have to print for no: 2,4,6,8 and 10 products
 mylist = [2,4,6,8,10]
 
-for value in root :
-    if value.tag == 'Products':
-        for child in value:
-            product_id = int(child.get('ProductID'))
+
+for child in root :
+    if child.tag == 'Products':
+        for grandchild in child:
+            product_id = int(grandchild.get('ProductID'))
             if product_id in mylist:
                 print("Product ID : ", product_id)
-                print("Product Name : ", child.find('ProductName').text)
-                print("Unit Price :", child.find('UnitPrice').text)
+                print("Product Name : ", grandchild.find('ProductName').text)
+                print("Unit Price :", grandchild.find('UnitPrice').text)
