@@ -1,7 +1,7 @@
-import xml.etree.ElementTree as ET
+x = 10
 
-tree = ET.parse("people.xml")
+x *= 10
 
-root = tree.getroot()
+print(x)
 
-print(root.tag)
+
